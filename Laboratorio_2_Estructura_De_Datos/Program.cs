@@ -10,7 +10,7 @@ namespace Laboratorio_2_Estructura_De_Datos
     {
         static void Main(string[] args)
         {
-          // Comentario de David 
+          // Comentario de David p
 
         }
     }
