@@ -26,19 +26,13 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-<<<<<<< HEAD
-          "SelectedChildIndex": 1,
-=======
           "SelectedChildIndex": 10,
->>>>>>> 6c6e01ab87ce1541f5efdc82ca6f6ce1e42fd6a6
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
             },
             {
-<<<<<<< HEAD
-=======
               "$type": "Bookmark",
               "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
             },
@@ -102,21 +96,14 @@
               "EditorCaption": ""
             },
             {
->>>>>>> 6c6e01ab87ce1541f5efdc82ca6f6ce1e42fd6a6
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\david\\OneDrive - Ministerio de Educaci\u00F3n, Gobierno de El Salvador\\Desktop\\Laboratorio2_ESD\\Laboratorio_2_Estructura_De_Datos\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
-<<<<<<< HEAD
-              "ToolTip": "C:\\Users\\SwagJV\\Desktop\\Proyecto Laboratorio\\Laboratorio_2_Estructura_De_Datos\\Program.cs",
-              "RelativeToolTip": "Program.cs",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAAAAwAAAAiAAAA",
-=======
               "ToolTip": "C:\\Users\\david\\OneDrive - Ministerio de Educaci\u00F3n, Gobierno de El Salvador\\Desktop\\Laboratorio2_ESD\\Laboratorio_2_Estructura_De_Datos\\Program.cs",
               "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAApAAAAAAAAAA==",
->>>>>>> 6c6e01ab87ce1541f5efdc82ca6f6ce1e42fd6a6
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-18T01:08:37.931Z",
               "EditorCaption": ""

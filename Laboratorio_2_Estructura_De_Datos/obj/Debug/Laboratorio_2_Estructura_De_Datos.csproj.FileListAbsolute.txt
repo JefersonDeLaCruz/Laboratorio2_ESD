@@ -5,3 +5,17 @@ C:\Users\SwagJV\Desktop\Proyecto Laboratorio\Laboratorio_2_Estructura_De_Datos\o
 C:\Users\SwagJV\Desktop\Proyecto Laboratorio\Laboratorio_2_Estructura_De_Datos\obj\Debug\Laboratorio_2_Estructura_De_Datos.csproj.CoreCompileInputs.cache
 C:\Users\SwagJV\Desktop\Proyecto Laboratorio\Laboratorio_2_Estructura_De_Datos\obj\Debug\Laboratorio_2_Estructura_De_Datos.exe
 C:\Users\SwagJV\Desktop\Proyecto Laboratorio\Laboratorio_2_Estructura_De_Datos\obj\Debug\Laboratorio_2_Estructura_De_Datos.pdb
+C:\Users\thecr\Desktop\Proyecto\Laboratorio2_ESD\Laboratorio_2_Estructura_De_Datos\bin\Debug\Laboratorio_2_Estructura_De_Datos.exe.config
+C:\Users\thecr\Desktop\Proyecto\Laboratorio2_ESD\Laboratorio_2_Estructura_De_Datos\bin\Debug\Laboratorio_2_Estructura_De_Datos.exe
+C:\Users\thecr\Desktop\Proyecto\Laboratorio2_ESD\Laboratorio_2_Estructura_De_Datos\bin\Debug\Laboratorio_2_Estructura_De_Datos.pdb
+C:\Users\thecr\Desktop\Proyecto\Laboratorio2_ESD\Laboratorio_2_Estructura_De_Datos\obj\Debug\Laboratorio_2_Estructura_De_Datos.csproj.AssemblyReference.cache
+C:\Users\thecr\Desktop\Proyecto\Laboratorio2_ESD\Laboratorio_2_Estructura_De_Datos\obj\Debug\Laboratorio_2_Estructura_De_Datos.csproj.CoreCompileInputs.cache
+C:\Users\thecr\Desktop\Proyecto\Laboratorio2_ESD\Laboratorio_2_Estructura_De_Datos\obj\Debug\Laboratorio_2_Estructura_De_Datos.exe
+C:\Users\thecr\Desktop\Proyecto\Laboratorio2_ESD\Laboratorio_2_Estructura_De_Datos\obj\Debug\Laboratorio_2_Estructura_De_Datos.pdb
+C:\Users\david\OneDrive - Ministerio de Educación, Gobierno de El Salvador\Desktop\Laboratorio2_ESD\Laboratorio_2_Estructura_De_Datos\bin\Debug\Laboratorio_2_Estructura_De_Datos.exe.config
+C:\Users\david\OneDrive - Ministerio de Educación, Gobierno de El Salvador\Desktop\Laboratorio2_ESD\Laboratorio_2_Estructura_De_Datos\bin\Debug\Laboratorio_2_Estructura_De_Datos.exe
+C:\Users\david\OneDrive - Ministerio de Educación, Gobierno de El Salvador\Desktop\Laboratorio2_ESD\Laboratorio_2_Estructura_De_Datos\bin\Debug\Laboratorio_2_Estructura_De_Datos.pdb
+C:\Users\david\OneDrive - Ministerio de Educación, Gobierno de El Salvador\Desktop\Laboratorio2_ESD\Laboratorio_2_Estructura_De_Datos\obj\Debug\Laboratorio_2_Estructura_De_Datos.csproj.AssemblyReference.cache
+C:\Users\david\OneDrive - Ministerio de Educación, Gobierno de El Salvador\Desktop\Laboratorio2_ESD\Laboratorio_2_Estructura_De_Datos\obj\Debug\Laboratorio_2_Estructura_De_Datos.csproj.CoreCompileInputs.cache
+C:\Users\david\OneDrive - Ministerio de Educación, Gobierno de El Salvador\Desktop\Laboratorio2_ESD\Laboratorio_2_Estructura_De_Datos\obj\Debug\Laboratorio_2_Estructura_De_Datos.exe
+C:\Users\david\OneDrive - Ministerio de Educación, Gobierno de El Salvador\Desktop\Laboratorio2_ESD\Laboratorio_2_Estructura_De_Datos\obj\Debug\Laboratorio_2_Estructura_De_Datos.pdb
