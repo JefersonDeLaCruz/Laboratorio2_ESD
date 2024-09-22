@@ -197,6 +197,8 @@ namespace Laboratorio_2_Estructura_De_Datos
                             switch (opMenu)
                             {
                                 case 1:
+                                    //Gestion de invetario por metodo PEPS
+                                    Inventario.ventaPEPS();
                                     break;
 
                                 case 2:

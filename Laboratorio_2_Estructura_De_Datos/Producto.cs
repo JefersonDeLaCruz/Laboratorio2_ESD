@@ -49,9 +49,21 @@ namespace Laboratorio_2_Estructura_De_Datos
             }
         }
 
-            //Este constructor se utilizara la primera vez que se agregue producto,
-            //el producto no existe todavia
-            public Producto(string nombre, double precio, int id, Lote lote) 
+        //Esto es para PEPS ya que se debe usar una queue
+        //Primero en entrar primero en salir, la mercancia mas vieje sale
+        public Queue<Lote> lotesEnQueue = new Queue<Lote>();
+        //Devuelve una copia de la lista de lotes como una Queue de lotes
+        public void actualizarLotesenQueue()
+        {
+            foreach (Lote lote in Lotes)
+            {
+                lotesEnQueue.Enqueue(lote); //Agregar lote a la cola
+            }
+        }
+
+        //Este constructor se utilizara la primera vez que se agregue producto,
+        //el producto no existe todavia
+        public Producto(string nombre, double precio, int id, Lote lote) 
         {
             this.Id = id;
 
