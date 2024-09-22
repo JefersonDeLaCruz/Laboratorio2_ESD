@@ -83,10 +83,11 @@ namespace Laboratorio_2_Estructura_De_Datos
                                     Console.WriteLine("\nAgregar producto a inventario");
                                     Inventario.agregarProductosAInventario();
                                     Console.WriteLine("Producto agregado ...");
-                                    Console.WriteLine("\nMostrando inventario ...");
-                                    Inventario.mostrarProductos();
+                                    //Console.WriteLine("\nMostrando inventario ...");
+                                    //Inventario.mostrarProductos();//no es necesario mostrar el inventario cada vez que el user agregue un nuevo producot
                                     Console.WriteLine();
                                     Console.ReadKey();
+                                    Console.Clear();
                                     break;
 
                                 default:
@@ -128,13 +129,14 @@ namespace Laboratorio_2_Estructura_De_Datos
                             switch (opMenu)
                             {
                                 case 1:
+                                    Inventario.pepsVenta();
                                     break;
 
                                 case 2:
                                     break;
 
                                 case 3:
-                                    
+
                                     break;
 
                                 default:
@@ -144,8 +146,34 @@ namespace Laboratorio_2_Estructura_De_Datos
                         break;
                     case 3:
                         //Mostrar inventario
-                        break;
+                        Inventario.mostrarProductos();
+                        Console.WriteLine("Para ver los lotes de un producto ingrese el ID correspondiente. De lo contrario ingrese -1");
+                        int opcionId;
 
+                        while (!(int.TryParse(Console.ReadLine(), out opcionId) && (opcionId == -1 || (opcionId >= 1 && opcionId <= Producto.Lote.Count))))
+                        {
+                            Console.WriteLine("El ID ingresado es invalido o no existe");
+                        }
+                        if (opcionId == -1)
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            mostrarDetalles(opcionId);
+
+                        }
+
+
+
+                        Console.ReadKey();
+                        break;
+                    case 10:
+                        //para testeo
+                        Lote.mostrarLotes();
+                        Console.ReadKey();
+                        Console.ReadKey();
+                        break;
                     default:
                         break;
                 }
@@ -154,6 +182,53 @@ namespace Laboratorio_2_Estructura_De_Datos
         }
 
         //Seccion de metodos utiles para el flujo del programa general
-       
+
+        static void mostrarDetalles(int opcionId)
+        {
+            while (true)
+            {
+                int id = -1;
+                Console.Clear();
+                //mostramos los lotes de dicho producto
+                Lote.mostrarLotes(Producto.Lote, opcionId);
+
+                //pregunta si quiere ver los productos en un lote de los que se muestre
+                string codigoIngresado;
+
+
+
+                Console.WriteLine("Ingrese el codigo de un lote para ver los productos que contiene. De lo contrario ingrese -1");
+                codigoIngresado = Console.ReadLine();
+                if (codigoIngresado == "-1")
+                {
+                    Console.Clear();
+                    break;
+                }
+                else
+                {
+                    foreach (var item in Producto.Lote)
+                    {
+                        if (item.Id == codigoIngresado)
+                        {
+                            //eoncontramos el indice del guibajo ya que el numero que nos interesa es el que esta justo despues de este
+                            int indiceGuionbajo = codigoIngresado.LastIndexOf('_');
+
+                            id = Convert.ToInt32(codigoIngresado.Substring(indiceGuionbajo + 1));
+                            break;
+                        }
+                    }
+                    if (id == -1)
+                    {
+                        Console.Clear();
+                        Console.WriteLine("El codigo ingresado es invalido o no existe");
+                        Console.ReadKey();
+
+                    }
+                    Inventario.verProductosIndivuduales(Producto.Lote, codigoIngresado, id);
+
+                }
+            }
+        }
+
     }
 }
