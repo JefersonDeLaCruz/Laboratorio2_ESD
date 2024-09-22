@@ -19,9 +19,10 @@ namespace Laboratorio_2_Estructura_De_Datos
         // Precio total del lote
         public double precioTotal;
 
-        public string Id { get; set; }//
+        //Id de lote corresponde con el numero de llegada del lote 1,2,3 ... n
+        public int Id { get; set; }
 
-        public Lote(DateTime fechaIngreso, int cantidad, double precio,string id)
+        public Lote(DateTime fechaIngreso, int cantidad, double precio,int id)
         {
             this.fechaIngreso = fechaIngreso;
             this.Cantidad = cantidad;
@@ -51,20 +52,7 @@ namespace Laboratorio_2_Estructura_De_Datos
             Console.ReadKey();
 
         }
-        public static void mostrarLotes(List<Lote> Lote, int opcionId)
-        {
+       
 
-            foreach (var item in Lote)
-            {
-                string codigo = item.Id;
-                int indiceGuinbajo = codigo.LastIndexOf('_');
-                int indiceBuscado = Convert.ToInt32(codigo.Substring(2, indiceGuinbajo - 2));
-
-                if (indiceBuscado == opcionId)
-                {
-                    Console.WriteLine(item);
-                }
-            }
-        }
     }
 }
