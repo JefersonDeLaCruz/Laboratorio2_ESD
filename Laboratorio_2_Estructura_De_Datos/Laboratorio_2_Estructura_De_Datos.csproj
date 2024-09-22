@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Color.cs" />
     <Compile Include="Inventario.cs" />
     <Compile Include="Lote.cs" />
     <Compile Include="Producto.cs" />

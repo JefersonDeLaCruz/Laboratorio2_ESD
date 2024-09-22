@@ -15,34 +15,395 @@ namespace Laboratorio_2_Estructura_De_Datos
         //Clave = Id del producto. 
         //Valor = Un Producto
         public static Dictionary<int, Producto> inventario = new Dictionary<int, Producto>();
-        public static void pepsVenta()
+
+
+
+        //PEPS Primero en Entrar Primero en Salir
+        public static void ventaPEPS()
         {
-            //primero en entrar primero en salir
-
-           
-
-
+            
 
         }
 
-        //Este metodo agrega un producto/os al inventario 
+
+
+
+
+        //UEPS Ultimo en Entrar Primero en Salir
+        public static void ventaUEPS()
+        {
+            Console.Clear();
+            Color.SetTextColor(ConsoleColor.DarkBlue); // Color
+            Console.WriteLine("\nGESTION DE INVENTARIO METODO UEPS");
+            Color.ResetTextColor(); // Reestablecer color por defecto
+
+            /*
+             La idea es utilizar una pila(stack).
+
+             La pila contendra los lotes del producto, por lo tanto, la pila sera de tipo Lote,
+             es decir, cada elemento de la pila es un Lote.
+             */
+
+            //Mostrar productos para que seleccione un id de producto a vender
+            Inventario.mostrarProductos();
+
+            Producto producto = null; //Variable de referencia al producto seleccionado
+
+            //Se validara que el id exista
+            Boolean existe = false;
+            int idProducto = 0;
+            while (!existe) 
+            {
+                Console.Write("Ingrese el ID del producto a vender (-1 para salir): ");
+                while (!int.TryParse(Console.ReadLine(), out idProducto) || (idProducto < 1 && idProducto != -1))
+                {
+                    Color.SetTextColor(ConsoleColor.Red); // Color
+                    Console.WriteLine("Error: ingrese un id valido");
+                    Color.ResetTextColor(); // Reestablecer color por defecto
+                    Console.Write("Ingrese el ID del producto a vender (-1 para salir): ");
+                }
+
+                if (idProducto == -1)
+                {
+                    Console.WriteLine("Volviendo ...");
+                    Thread.Sleep(1000);
+                    break;
+                }
+
+                foreach (KeyValuePair<int, Producto> item in inventario)
+                {
+                    //El producto existe
+                    if (item.Value.Id == idProducto)
+                    {
+                        existe = true;
+                        producto = item.Value; //Almacenamos el producto en una variable 
+                        break; //Salimos del foreach
+                    }
+                }
+
+                if (!existe)
+                {
+                    Color.SetTextColor(ConsoleColor.Red); // Color
+                    Console.WriteLine("Error: el id no existe");
+                    Color.ResetTextColor(); // Reestablecer color por defecto
+                }
+            }
+
+            if (idProducto != -1)
+            {
+                //Mostrar lotes
+                inventario[idProducto].mostrarLotes();
+
+                Console.Write("\nIngrese la cantidad de producto a vender: ");
+                int cantidad;
+                while (!int.TryParse(Console.ReadLine(), out cantidad) || cantidad < 1 || cantidad > producto.Cantidad)
+                {
+                    if (cantidad > producto.Cantidad)
+                    {
+                        Color.SetTextColor(ConsoleColor.Red); // Color
+                        Console.WriteLine("Excedio la cantidad de producto en existencias");
+                        Color.ResetTextColor(); // Reestablecer color por defecto
+                    }
+                    else
+                    {
+                        Color.SetTextColor(ConsoleColor.Red); // Color
+                        Console.WriteLine("Error: Ingrese una cantidad valida");
+                        Color.ResetTextColor(); // Reestablecer color por defecto
+                    }
+                    Console.Write("Ingrese la cantidad de producto a vender: ");
+                }
+
+                //LLegado a este punto las validaciones ya estan realizadas el id del producto existe
+                //y hay suficiente producto para vender
+
+                //IMPOTANTE: en la clase producto hay un stack pensada
+                //especificamente para hacer el UEPS
+
+                //IMPORTANTE: Restamos la cantidad de producto vendido al lote mas nuevo si falta restamos
+                //tambien del de mas abajo en la pila. Esto para cumplir con el metodo UEPS.
+
+                //MUY IMPORTANTE 
+                //EN LA CLASE PRODUCTO HAY UNA PILA DE LOTESPERO NO ESTA INICIALIZADA CON LOS LOTES
+                producto.actualizarLotesenPila(); //Basicamente solo copiasmos cada lote en la lista de lotes a la pila de lotes
+
+                Color.SetTextColor(ConsoleColor.DarkBlue); // Color
+                Console.WriteLine("\nRESUMEN DE LA VENTA: ");
+                Color.ResetTextColor(); // Reestablecer color por defecto
+                double costoProductosVendidos = 0;
+                int cantidadRespaldo = cantidad;
+                while (cantidad > 0)
+                {
+                    //Hay que restar del de mas abajo ?
+                    if (cantidad - producto.lotesEnPila.Peek().Cantidad >= 0)
+                    {
+                        //Se vende a precio unitario del ultimo lote, lote mas nuevo
+                        costoProductosVendidos = costoProductosVendidos + ((cantidad - (cantidad - producto.lotesEnPila.Peek().Cantidad)) * producto.lotesEnPila.Peek().Precio);
+
+                        //Actualizamos la variable Cantidad del producto
+                        producto.Cantidad = producto.Cantidad - producto.lotesEnPila.Peek().Cantidad;
+
+                        cantidad = cantidad - producto.lotesEnPila.Peek().Cantidad; //Restamos lo vendido
+
+                        //Eliminamos el lote de la pila del producto ya que se vendio todo
+                        Console.WriteLine("Un lote vendido. Cantidad: " + producto.lotesEnPila.Pop().Cantidad);
+
+                        //Eliminamos el ultimo lote de la lista de lotes del producto ya que se vendio todo
+                        producto.Lotes.RemoveAt(producto.Lotes.Count-1);
+
+                        //ELIMINAMOS PRODUCTO DE INVENTARIO PORQUE NO QUEDA NADA
+                        if (producto.Cantidad == 0)
+                        {
+                            inventario.Remove(idProducto);
+                            existe = false; //El producto ya no existe
+
+                        }
+
+                    }
+                    else
+                    {
+                        //Se vende a precio unitario del ultimo lote, lote mas nuevo
+                        costoProductosVendidos = costoProductosVendidos + (cantidad * producto.lotesEnPila.Peek().Precio);
+
+                        Console.WriteLine("Se vendio la siguiente cantidad de el ultimo lote: " + cantidad);
+
+                        //Actualizamos la variable Cantidad del producto
+                        producto.Cantidad = producto.Cantidad - cantidad;
+
+                        
+                        //ACTUALIZAMOS LA CANTIDAD DE PRODUCTO EN LA PILA DEL PRODUCTO
+                        producto.lotesEnPila.Peek().Cantidad = producto.lotesEnPila.Peek().Cantidad - cantidad;
+
+                        //ACTUALIZAMOS LA CANTIDAD DE PRODUCTO EN LA LISTA DEL PRODUCTO
+                        //Eliminamos el lote de la lista de lotes del producto
+                        producto.Lotes.RemoveAt(producto.Lotes.Count - 1);
+                        producto.Lotes.Add(producto.lotesEnPila.Peek()); //Copiamos el lote del stack actualizado como nuevo elemento de la lista de
+                                                                         //lotes del producto
+
+                        cantidad = cantidad - cantidad; //Restamos lo vendido
+                    }
+                }
+                //Resumen venta
+                Color.SetTextColor(ConsoleColor.Red); // Color
+                Console.WriteLine($"Cantidad: {cantidadRespaldo}, Costo total de la venta: {costoProductosVendidos}");
+                Color.ResetTextColor(); // Reestablecer color por defecto
+
+                //Mostrar lotes
+                if (existe)
+                {
+                    Color.SetTextColor(ConsoleColor.DarkBlue); // Color
+                    Console.WriteLine("\nPRODUCTO RESTANTE:");
+                    Color.ResetTextColor(); // Reestablecer color por defecto
+                    inventario[idProducto].mostrarLotes();
+                }
+                else
+                {
+                    Color.SetTextColor(ConsoleColor.DarkBlue); // Color
+                    Console.WriteLine("\nSe agotaron las existencias del producto");
+                    Color.ResetTextColor(); // Reestablecer color por defecto
+                }
+
+
+                Console.WriteLine("\nPresione una tecla para volver . . .");
+                Console.ReadKey();
+            }
+        }
+
+
+
+
+        //Metodo de gestion de inventario costo promedio
+        public static void costoPromedio()
+        {
+            Console.Clear();
+            Color.SetTextColor(ConsoleColor.DarkBlue); // Color
+            Console.WriteLine("\nGESTION DE INVENTARIO METODO COSTO PROMEDIO");
+            Color.ResetTextColor(); // Reestablecer color por defecto
+
+            /*
+             La idea es utilizar una pila(stack).
+
+             La pila contendra los lotes del producto, por lo tanto, la pila sera de tipo Lote,
+             es decir, cada elemento de la pila es un Lote.
+             */
+
+            //Mostrar productos para que seleccione un id de producto a vender
+            Inventario.mostrarProductos();
+
+            Producto producto = null; //Variable de referencia al producto seleccionado
+
+            //Se validara que el id exista
+            Boolean existe = false;
+            int idProducto = 0;
+            while (!existe)
+            {
+                Console.Write("Ingrese el ID del producto a vender (-1 para salir): ");
+                while (!int.TryParse(Console.ReadLine(), out idProducto) || (idProducto < 1 && idProducto!=-1))
+                {
+                    Color.SetTextColor(ConsoleColor.Red); // Color
+                    Console.WriteLine("Error: ingrese un id valido");
+
+                    Color.ResetTextColor(); // Reestablecer color por defecto
+                    Console.Write("Ingrese el ID del producto a vender (-1 para salir): ");
+                }
+
+                if (idProducto == -1)
+                {
+                    Console.WriteLine("Volviendo ...");
+                    Thread.Sleep(1000);
+                    break;
+                }
+
+                foreach (KeyValuePair<int, Producto> item in inventario)
+                {
+                    //El producto existe
+                    if (item.Value.Id == idProducto)
+                    {
+                        existe = true;
+                        producto = item.Value; //Almacenamos el producto en una variable 
+                        break; //Salimos del foreach
+                    }
+                }
+
+                if (!existe)
+                {
+                    Color.SetTextColor(ConsoleColor.Red); // Color
+                    Console.WriteLine("Error: el id no existe");
+                    Color.ResetTextColor(); // Reestablecer color por defecto
+                }
+            }
+
+            if (idProducto != -1)
+            {
+                //Mostrar lotes
+                inventario[idProducto].mostrarLotes();
+
+                Console.Write("\nIngrese la cantidad de producto a vender: ");
+                int cantidad;
+                while (!int.TryParse(Console.ReadLine(), out cantidad) || cantidad < 1 || cantidad > producto.Cantidad)
+                {
+                    if (cantidad > producto.Cantidad)
+                    {
+                        Color.SetTextColor(ConsoleColor.Red); // Color
+                        Console.WriteLine("Excedio la cantidad de producto en existencias");
+                        Color.ResetTextColor(); // Reestablecer color por defecto
+                    }
+                    else
+                    {
+                        Color.SetTextColor(ConsoleColor.Red); // Color
+                        Console.WriteLine("Error: Ingrese una cantidad valida");
+                        Color.ResetTextColor(); // Reestablecer color por defecto
+                    }
+                    Console.Write("Ingrese la cantidad de producto a vender: ");
+                }
+
+                //LLegado a este punto las validaciones ya estan realizadas el id del producto existe
+                //y hay suficiente producto para vender
+
+
+
+                //Con este metodo siempre vendemos el ultimo elemento el mas nuevo pero no lo vendemos al precio al que se compro
+                //ese lote si no al costo promedio
+                double costoPromedio = 0;
+                //Calcular costo promedio
+                //ACTUALIZAR SALDO DEL PRODUCTO
+                inventario[idProducto].actualizarSaldo();
+                costoPromedio = producto.saldo / producto.Cantidad; //A ESTE PRECIO SE VENDERAN TODOS LOS PRODUCTOS
+
+
+
+                Color.SetTextColor(ConsoleColor.DarkBlue); // Color
+                Console.WriteLine("\nRESUMEN DE LA VENTA: ");
+                Color.ResetTextColor(); // Reestablecer color por defecto
+                double costoProductosVendidos = 0;
+                int cantidadRespaldo = cantidad;
+                while (cantidad > 0)
+                {
+                    //Hay que restar del de mas abajo ?
+                    if (cantidad - inventario[idProducto].Lotes[inventario[idProducto].Lotes.Count - 1].Cantidad >= 0)
+                    {
+                        //Se vende a precio unitario del ultimo lote, lote mas nuevo
+                        costoProductosVendidos = costoProductosVendidos + ((cantidad - (cantidad - inventario[idProducto].Lotes[inventario[idProducto].Lotes.Count - 1].Cantidad)) * costoPromedio);
+
+                        //Actualizamos la variable Cantidad del producto
+                        producto.Cantidad = producto.Cantidad - inventario[idProducto].Lotes[inventario[idProducto].Lotes.Count - 1].Cantidad;
+
+                        cantidad = cantidad - inventario[idProducto].Lotes[inventario[idProducto].Lotes.Count - 1].Cantidad; //Restamos lo vendido
+
+                        //Eliminamos el lote de la pila del producto ya que se vendio todo
+                        Console.WriteLine("Un lote vendido. Cantidad: " + inventario[idProducto].Lotes[inventario[idProducto].Lotes.Count - 1].Cantidad);
+
+                        //Eliminamos el ultimo lote de la lista de lotes del producto ya que se vendio todo
+                        producto.Lotes.RemoveAt(producto.Lotes.Count - 1);
+
+                        //ELIMINAMOS PRODUCTO DE INVENTARIO PORQUE NO QUEDA NADA
+                        if (producto.Cantidad == 0)
+                        {
+                            inventario.Remove(idProducto);
+                            existe = false; //El producto ya no existe
+
+                        }
+                    }
+                    else
+                    {
+                        //Se vende a precio unitario del ultimo lote, lote mas nuevo
+                        costoProductosVendidos = costoProductosVendidos + (cantidad * costoPromedio);
+
+                        Console.WriteLine("Se vendio la siguiente cantidad de el ultimo lote: " + cantidad);
+
+                        //Actualizamos la variable Cantidad del producto
+                        producto.Cantidad = producto.Cantidad - cantidad;
+
+                        //ACTUALIZAMOS LA CANTIDAD DE PRODUCTO EN LA LISTA DE LOTES SE VENDIO UNA PARTE DEL LOTE
+                        inventario[idProducto].Lotes[inventario[idProducto].Lotes.Count - 1].Cantidad -= cantidad;
+
+                        cantidad = cantidad - cantidad; //Restamos lo vendido
+                    }
+                }
+                //Resumen venta
+                Color.SetTextColor(ConsoleColor.Red); // Color
+                Console.WriteLine("Se vendio al siguiente costo promedio: " + costoPromedio);
+                Console.WriteLine($"Cantidad: {cantidadRespaldo}, Costo total de la venta: {costoProductosVendidos}");
+                Color.ResetTextColor(); // Reestablecer color por defecto
+
+                //Mostrar lotes
+                if (existe)
+                {
+                    Color.SetTextColor(ConsoleColor.DarkBlue); // Color
+                    Console.WriteLine("\nPRODUCTO RESTANTE:");
+                    Color.ResetTextColor(); // Reestablecer color por defecto
+                    inventario[idProducto].mostrarLotes();
+                }
+                else
+                {
+                    Color.SetTextColor(ConsoleColor.DarkBlue); // Color
+                    Console.WriteLine("\nSe agotaron las existencias del producto");
+                    Color.ResetTextColor(); // Reestablecer color por defecto
+                }
+
+
+                Console.WriteLine("\nPresione una tecla para volver . . .");
+                Console.ReadKey();
+            }
+
+        }
+
+
+
+
+        //Este metodo agrega un producto/os al inventario (agrega lotes a un producto existente o en su defecto crea
+        //un nuevo producto con un nuevo lote)
         public static void agregarProductosAInventario()
         {
             //Datos necesarios 
             Console.Write("Nombre del producto: ");
             string nombreProducto = Console.ReadLine();
 
-            while (nombreProducto.Length < 2)
-            {
-                Console.WriteLine("El nombre del producto debe contener al menos dos caracteres");
-                nombreProducto = Console.ReadLine();
-            }
             Console.Write("Cantidad a agregar del producto: ");
             int cantidad;
             while (!int.TryParse(Console.ReadLine(), out cantidad) || cantidad < 1)
             {
                 Console.WriteLine("Error: Ingrese una cantidad valida");
-                Console.Write("Cantidad: ");
+                Console.Write("Cantidad a agregar del producto: ");
             }
 
             Console.Write("Precio unitario: ");
@@ -50,15 +411,14 @@ namespace Laboratorio_2_Estructura_De_Datos
             while (!double.TryParse(Console.ReadLine(), out precio) || precio < 0)
             {
                 Console.WriteLine("Error: Ingrese un precio valido");
-                Console.Write("Precio: ");
+                Console.Write("Precio unitario: ");
             }
 
-            //Este sera el Id del nuevo producto agregado 
+            //Este sera el Id del nuevo producto agregado comienza en 1 
             int numAlmacenados = inventario.Count + 1;
-            //le agregue el '+1' ya que al probarlo el id del primer producto era == count osea  = 0
 
-
-
+            //Se creara un nuevo lote del producto 
+            Lote loteNuevo; 
 
             //Buscamos si el producto existe en el inventario
             Boolean existe = false;
@@ -67,113 +427,51 @@ namespace Laboratorio_2_Estructura_De_Datos
                 //El producto existe
                 if (item.Value.Nombre.ToLower().Equals(nombreProducto.ToLower()))
                 {
+                    //Creamos el id del lote nuevo
+                    int idLoteNuevo = item.Value.Lotes.Count + 1;
+                    //Creamos el nuevo lote
+                    loteNuevo = new Lote(DateTime.Now, cantidad, precio, idLoteNuevo);
 
-                    //Se agregara este nuevo lote del producto
-                    //en la siguiente linea de codigo se genera autogenera el id del lote de la siguiente manera
-                    //abn_c --> donde a y b son las primeras dos letras del nombre del producto dentro del lote
-                    //n es el id del producto dentro del lote y c sera el Lote.count + 1
-                    //abn servira para identificar de que producto esta compuesto el lote
-                    //c sera el id del lote como tal
-                    string idLote = $"{item.Value.Nombre.Substring(0, 2)}{item.Value.Id}_{Producto.Lote.Count + 1}";
-                    Lote loteNuevo = new Lote(DateTime.Now, cantidad, precio, idLote);
+                    //Solo agregamos el nuevo lote porque el producto existe
                     item.Value.agregarLote(precio, loteNuevo);
-                    //
-                    List<Producto> listaProductos = new List<Producto>();
-                    for (int i = 0; i < loteNuevo.Cantidad; i++)
-                    {
-                        Producto p = new Producto(nombreProducto, loteNuevo.Precio, numAlmacenados);
-                        listaProductos.Add(p);
-                    }
-                    Producto.LotesIndivuduales.Add(listaProductos);
                     existe = true;
                 }
             }
+
             //El producto no existe
             if (!existe)
             {
-                string idLote = $"{nombreProducto.Substring(0, 2)}{numAlmacenados}_{Producto.Lote.Count + 1}";
-                Lote loteNuevo = new Lote(DateTime.Now, cantidad, precio, idLote);
+                //Creamos el nuevo lote su id es 1 ya que es el primer lote
+                loteNuevo = new Lote(DateTime.Now, cantidad, precio, 1);
+
                 //Agregar el producto
                 inventario.Add(numAlmacenados, new Producto(nombreProducto, precio, numAlmacenados, loteNuevo));
-
-                //---------
-                List<Producto> listaProductos = new List<Producto>();
-                for (int i = 0; i < loteNuevo.Cantidad; i++)
-                {
-                    Producto p = new Producto(nombreProducto, loteNuevo.Precio, numAlmacenados);
-                    listaProductos.Add(p);
-                }
-                Producto.LotesIndivuduales.Add(listaProductos);
-                //------
             }
 
         }
 
-        //Muestra la informacion de los productos
+
+
+
+
+
+        //Muestra la informacion de los productos los productos del diccionario inventario
         public static void mostrarProductos()
         {
-            //muestra los productos dentro del diccionario
-            Console.WriteLine("Informacion de los productos ...");
+            //Muestra los productos dentro del diccionario
+            Color.SetTextColor(ConsoleColor.DarkBlue); // Color
+            Console.WriteLine("INVENTARIO DE PRODUCTOS");
+            Color.ResetTextColor(); // Reestablecer color por defecto
+
             //---> variable item de tipo KeyValuePair<int, Producto> almacena tanto la llave como el el valor
             //item.value accede al objeto producto almacenado como valor
             //al ser item.value == instancia de un producto podemos acceder a sus campos con el operador punto
             foreach (KeyValuePair<int, Producto> item in inventario)
             {
+                Console.WriteLine("---------------------------------------------------------------------------------------");
                 Console.WriteLine($"\tId: {item.Value.Id}\t|\t Nombre: {item.Value.Nombre}\t|\t Precio: {item.Value.Precio}\t|\t Cantidad: {item.Value.Cantidad}");
             }
+            Console.WriteLine("---------------------------------------------------------------------------------------");
         }
-
-        public static void verProductosIndivuduales(List<Lote> Lote, string codigoIngresado, int id)
-        {
-            //muestra los productos por unidad dentro de cada lote
-            //la longitud de la lista de Lote con lotesIndividuales es la misma
-            //entonces necesitamos extrar el id del lote del codigo generado
-            //por ejemplo si el codigo es col1_3 necesitamos extraer el 3
-
-
-            if (codigoIngresado == "-1")
-            {
-                Console.Clear();
-                Console.WriteLine("Pulse cualquier tecla para regresar al menu principal");
-            }
-            else
-            {
-                foreach (var item in Lote)
-                {
-                    if (item.Id == codigoIngresado)
-                    {
-                        //eoncontramos el indice del guibajo ya que el numero que nos interesa es el que esta justo despues de este
-                        int indiceGuionbajo = codigoIngresado.LastIndexOf('_');
-
-                        id = Convert.ToInt32(codigoIngresado.Substring(indiceGuionbajo + 1));
-                        break;
-                    }
-                }
-                if (id == -1)
-                {
-                    Console.Clear();
-                    Console.WriteLine("El codigo ingresado es invalido o no existe");
-
-                }
-                else
-                {
-                    //ahora que ya tenemos el id simplemente mostramos todos los items en ese indice de la lista de listas
-                    int i = 1;
-                    foreach (var item in Producto.LotesIndivuduales[id - 1])
-                    {
-                        Console.WriteLine($"{i}. {item}");
-                        i++;
-                    }
-
-                    Console.WriteLine();
-                    Console.ReadKey();
-                }
-
-            }
-
-
-        }
-
-
     }
 }
