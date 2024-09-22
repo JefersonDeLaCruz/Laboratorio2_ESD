@@ -18,8 +18,123 @@ namespace Laboratorio_2_Estructura_De_Datos
         public static void pepsVenta()
         {
             //primero en entrar primero en salir
+            mostrarProductos();
+            Console.WriteLine("Ingrese el ID del producto que sera vendida");
+            int idProducto;
 
-           
+
+            List<string> codigos = new List<string>();
+            while (!int.TryParse(Console.ReadLine(), out idProducto) || idProducto < 1 || idProducto > inventario.Count)
+            {
+                Console.WriteLine("Entrada no valida");
+            }
+            Console.WriteLine($"El producto seleccionado es: {inventario[idProducto].Nombre}\nIngrese la cantidad a vender");
+            int cantidadSaliente;
+
+            while (!int.TryParse(Console.ReadLine(), out cantidadSaliente) || cantidadSaliente < 1 || cantidadSaliente > inventario[idProducto].Cantidad)
+            {
+                Console.WriteLine("Entrada no valida");
+            }
+
+            List<int> indicesProductosEnLote = new List<int>();
+            int z = 0;
+            foreach (var item in Producto.Lote)
+            {
+                string codigo = item.Id;
+                int indiceGuionbajo = codigo.LastIndexOf('_');
+                int indiceBuscado = Convert.ToInt32(codigo.Substring(2, indiceGuionbajo - 2));
+
+                if (indiceBuscado == idProducto)
+                {
+                    codigos.Add(item.Id);
+                    indicesProductosEnLote.Add(z);
+                }
+                z++;
+            }
+            Console.WriteLine("CODIGOS E INDICES CORRESPONDIENTES AL PRODUCTO SELENCCIONADO");
+            Console.WriteLine(string.Join(", ", codigos));
+            Console.WriteLine(string.Join(", ", indicesProductosEnLote));
+            Console.ReadKey();
+            //ya se cuantos lotes hay de ese producto --> codigos.count
+            //necesito determinar cual de esos lotes es el mas antiguo
+            //el mas antigui es cuyo id == 1
+            bool ventaRealizada = false;
+            while (!ventaRealizada)
+            {
+
+                int productosVendidos = 0;
+                for (int i = 0; i < indicesProductosEnLote.Count; i++)
+                {
+
+                    //creamos una cola que contenga los productos del lote mas antiguo
+                    List<Producto> productos = new List<Producto>();
+                    productos = Producto.LotesIndivuduales[indicesProductosEnLote[i]];
+
+                    Queue<Producto> colaP = new Queue<Producto>(productos);
+
+
+                    while (colaP.Count > 0 && cantidadSaliente > 0)
+                    {
+                        var producto = colaP.Dequeue();
+                        Console.WriteLine($"Vendiendo {productosVendidos+1}: {producto.Nombre}");
+                        productosVendidos++;
+                        cantidadSaliente--;
+
+                    }
+                    if (colaP.Count == 0 && cantidadSaliente > 0)
+                    {
+                        //si este se cumple es por que el lote quedo vacio pero aun falta vender mas producto
+                        Producto.LotesIndivuduales[indicesProductosEnLote[i]].Clear();
+                        Producto.Lote[indicesProductosEnLote[i]].Cantidad -= productosVendidos;
+                        Inventario.inventario[idProducto].Cantidad -= productosVendidos;
+                        Console.WriteLine($"Productos en el lote {Producto.Lote[indicesProductosEnLote[i]].Id} han sido vendidos");
+                        
+                    }
+                    else if (colaP.Count > 0 &&  cantidadSaliente <= 0)
+                    {
+                        Producto.LotesIndivuduales[indicesProductosEnLote[i]].RemoveRange(0,cantidadSaliente);
+                        Producto.Lote[indicesProductosEnLote[i]].Cantidad -= productosVendidos;
+                        Inventario.inventario[idProducto].Cantidad -= productosVendidos;
+                    }
+
+                    if (productosVendidos >= cantidadSaliente)
+                    {
+                        ventaRealizada = true;
+                        break;
+                    }
+                }
+                if (productosVendidos >= cantidadSaliente)
+                {
+                    ventaRealizada = true;
+                    break;
+                }
+
+
+            }
+            Console.WriteLine("Venta realizada con exito");
+
+
+            //List<Producto> productos = new List<Producto>();
+            //for (int i = 0; i < codigos.Count; i++)
+            //{
+            //    for (int j = 0; j < Producto.Lote.Count; j++)
+            //    {
+            //        if (Producto.Lote[j].Id == codigos[i])
+            //        {
+            //            productos.AddRange(Producto.LotesIndivuduales[j]);//fucionamos las listas
+            //            break;
+            //        }
+            //    }
+            //}
+
+            //Queue<Producto> productosCola = new Queue<Producto>(productos);
+            //Console.WriteLine("verificar si la lista fucionada si esta fucionando corrctamente");
+            //Console.WriteLine($"{productosCola.Count} + {productos.Count}");
+            Console.ReadKey();
+            //valido que el primer lote tenga suficientes unidades para dar basto a la venta
+
+
+
 
 
 
@@ -117,9 +232,12 @@ namespace Laboratorio_2_Estructura_De_Datos
             //---> variable item de tipo KeyValuePair<int, Producto> almacena tanto la llave como el el valor
             //item.value accede al objeto producto almacenado como valor
             //al ser item.value == instancia de un producto podemos acceder a sus campos con el operador punto
+            Console.WriteLine($"{"ID",-5} {"Nombre",-25} {"Precio",-10} {"Cantidad",-10}");
+            Console.WriteLine(new string('-', 50));
             foreach (KeyValuePair<int, Producto> item in inventario)
             {
-                Console.WriteLine($"\tId: {item.Value.Id}\t|\t Nombre: {item.Value.Nombre}\t|\t Precio: {item.Value.Precio}\t|\t Cantidad: {item.Value.Cantidad}");
+                Console.WriteLine($"{item.Value.Id,-5} {item.Value.Nombre,-25} {item.Value.Precio.ToString("F2"),-10} {item.Value.Cantidad,-10}");
+                Console.WriteLine(new string('-', 50));
             }
         }
 
@@ -159,6 +277,8 @@ namespace Laboratorio_2_Estructura_De_Datos
                 {
                     //ahora que ya tenemos el id simplemente mostramos todos los items en ese indice de la lista de listas
                     int i = 1;
+                    Console.WriteLine($"{"NOMBRE",-15} {"PRECIO UNITARIO",10}");
+                    Console.WriteLine(new string('-', 50));
                     foreach (var item in Producto.LotesIndivuduales[id - 1])
                     {
                         Console.WriteLine($"{i}. {item}");

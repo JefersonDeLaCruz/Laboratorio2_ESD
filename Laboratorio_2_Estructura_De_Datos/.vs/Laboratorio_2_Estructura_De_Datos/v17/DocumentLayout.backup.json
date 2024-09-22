@@ -1,22 +1,22 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\david\\OneDrive - Ministerio de Educaci\u00F3n, Gobierno de El Salvador\\Desktop\\Laboratorio2_ESD\\Laboratorio_2_Estructura_De_Datos\\",
+  "WorkspaceRootPath": "C:\\Users\\thecr\\Desktop\\Proyecto\\Laboratorio2_ESD\\Laboratorio_2_Estructura_De_Datos\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{4B721592-A6B8-4795-B5F4-8C313EA83D2A}|Laboratorio_2_Estructura_De_Datos.csproj|C:\\Users\\david\\OneDrive - Ministerio de Educaci\u00F3n, Gobierno de El Salvador\\Desktop\\Laboratorio2_ESD\\Laboratorio_2_Estructura_De_Datos\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4B721592-A6B8-4795-B5F4-8C313EA83D2A}|Laboratorio_2_Estructura_De_Datos.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4B721592-A6B8-4795-B5F4-8C313EA83D2A}|Laboratorio_2_Estructura_De_Datos.csproj|C:\\Users\\david\\OneDrive - Ministerio de Educaci\u00F3n, Gobierno de El Salvador\\Desktop\\Laboratorio2_ESD\\Laboratorio_2_Estructura_De_Datos\\producto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4B721592-A6B8-4795-B5F4-8C313EA83D2A}|Laboratorio_2_Estructura_De_Datos.csproj|solutionrelative:producto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4B721592-A6B8-4795-B5F4-8C313EA83D2A}|Laboratorio_2_Estructura_De_Datos.csproj|c:\\users\\david\\onedrive - ministerio de educaci\u00F3n, gobierno de el salvador\\desktop\\laboratorio2_esd\\laboratorio_2_estructura_de_datos\\inventario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4B721592-A6B8-4795-B5F4-8C313EA83D2A}|Laboratorio_2_Estructura_De_Datos.csproj|c:\\users\\thecr\\desktop\\proyecto\\laboratorio2_esd\\laboratorio_2_estructura_de_datos\\inventario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4B721592-A6B8-4795-B5F4-8C313EA83D2A}|Laboratorio_2_Estructura_De_Datos.csproj|solutionrelative:inventario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4B721592-A6B8-4795-B5F4-8C313EA83D2A}|Laboratorio_2_Estructura_De_Datos.csproj|c:\\users\\david\\onedrive - ministerio de educaci\u00F3n, gobierno de el salvador\\desktop\\laboratorio2_esd\\laboratorio_2_estructura_de_datos\\lote.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4B721592-A6B8-4795-B5F4-8C313EA83D2A}|Laboratorio_2_Estructura_De_Datos.csproj|C:\\Users\\thecr\\Desktop\\Proyecto\\Laboratorio2_ESD\\Laboratorio_2_Estructura_De_Datos\\producto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4B721592-A6B8-4795-B5F4-8C313EA83D2A}|Laboratorio_2_Estructura_De_Datos.csproj|solutionrelative:producto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4B721592-A6B8-4795-B5F4-8C313EA83D2A}|Laboratorio_2_Estructura_De_Datos.csproj|C:\\Users\\thecr\\Desktop\\Proyecto\\Laboratorio2_ESD\\Laboratorio_2_Estructura_De_Datos\\lote.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4B721592-A6B8-4795-B5F4-8C313EA83D2A}|Laboratorio_2_Estructura_De_Datos.csproj|solutionrelative:lote.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4B721592-A6B8-4795-B5F4-8C313EA83D2A}|Laboratorio_2_Estructura_De_Datos.csproj|C:\\Users\\thecr\\Desktop\\Proyecto\\Laboratorio2_ESD\\Laboratorio_2_Estructura_De_Datos\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4B721592-A6B8-4795-B5F4-8C313EA83D2A}|Laboratorio_2_Estructura_De_Datos.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,97 +26,59 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 10,
+          "SelectedChildIndex": 2,
           "Children": [
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:129:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
-            },
-            {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Lote.cs",
-              "DocumentMoniker": "C:\\Users\\david\\OneDrive - Ministerio de Educaci\u00F3n, Gobierno de El Salvador\\Desktop\\Laboratorio2_ESD\\Laboratorio_2_Estructura_De_Datos\\Lote.cs",
-              "RelativeDocumentMoniker": "Lote.cs",
-              "ToolTip": "C:\\Users\\david\\OneDrive - Ministerio de Educaci\u00F3n, Gobierno de El Salvador\\Desktop\\Laboratorio2_ESD\\Laboratorio_2_Estructura_De_Datos\\Lote.cs",
-              "RelativeToolTip": "Lote.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAxAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "Producto.cs",
+              "DocumentMoniker": "C:\\Users\\thecr\\Desktop\\Proyecto\\Laboratorio2_ESD\\Laboratorio_2_Estructura_De_Datos\\Producto.cs",
+              "RelativeDocumentMoniker": "Producto.cs",
+              "ToolTip": "C:\\Users\\thecr\\Desktop\\Proyecto\\Laboratorio2_ESD\\Laboratorio_2_Estructura_De_Datos\\Producto.cs",
+              "RelativeToolTip": "Producto.cs",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAwwCQAAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-21T02:39:55.914Z",
+              "WhenOpened": "2024-09-21T15:31:21.486Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "Inventario.cs",
-              "DocumentMoniker": "C:\\Users\\david\\OneDrive - Ministerio de Educaci\u00F3n, Gobierno de El Salvador\\Desktop\\Laboratorio2_ESD\\Laboratorio_2_Estructura_De_Datos\\Inventario.cs",
-              "RelativeDocumentMoniker": "Inventario.cs",
-              "ToolTip": "C:\\Users\\david\\OneDrive - Ministerio de Educaci\u00F3n, Gobierno de El Salvador\\Desktop\\Laboratorio2_ESD\\Laboratorio_2_Estructura_De_Datos\\Inventario.cs",
-              "RelativeToolTip": "Inventario.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEkAAABfAAAAAAAAAA==",
+              "Title": "Lote.cs",
+              "DocumentMoniker": "C:\\Users\\thecr\\Desktop\\Proyecto\\Laboratorio2_ESD\\Laboratorio_2_Estructura_De_Datos\\Lote.cs",
+              "RelativeDocumentMoniker": "Lote.cs",
+              "ToolTip": "C:\\Users\\thecr\\Desktop\\Proyecto\\Laboratorio2_ESD\\Laboratorio_2_Estructura_De_Datos\\Lote.cs",
+              "RelativeToolTip": "Lote.cs",
+              "ViewState": "AgIAACQAAAAAAAAAAAAmwCoAAAAzAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-20T14:56:28.261Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Producto.cs",
-              "DocumentMoniker": "C:\\Users\\david\\OneDrive - Ministerio de Educaci\u00F3n, Gobierno de El Salvador\\Desktop\\Laboratorio2_ESD\\Laboratorio_2_Estructura_De_Datos\\Producto.cs",
-              "RelativeDocumentMoniker": "Producto.cs",
-              "ToolTip": "C:\\Users\\david\\OneDrive - Ministerio de Educaci\u00F3n, Gobierno de El Salvador\\Desktop\\Laboratorio2_ESD\\Laboratorio_2_Estructura_De_Datos\\Producto.cs",
-              "RelativeToolTip": "Producto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAADYAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-20T14:30:44.373Z",
+              "WhenOpened": "2024-09-21T15:33:11.796Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "Inventario.cs",
+              "DocumentMoniker": "C:\\Users\\thecr\\Desktop\\Proyecto\\Laboratorio2_ESD\\Laboratorio_2_Estructura_De_Datos\\Inventario.cs",
+              "RelativeDocumentMoniker": "Inventario.cs",
+              "ToolTip": "C:\\Users\\thecr\\Desktop\\Proyecto\\Laboratorio2_ESD\\Laboratorio_2_Estructura_De_Datos\\Inventario.cs",
+              "RelativeToolTip": "Inventario.cs",
+              "ViewState": "AgIAAEAAAAAAAAAAAAAmwFwAAABGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-21T14:26:11.249Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\david\\OneDrive - Ministerio de Educaci\u00F3n, Gobierno de El Salvador\\Desktop\\Laboratorio2_ESD\\Laboratorio_2_Estructura_De_Datos\\Program.cs",
+              "DocumentMoniker": "C:\\Users\\thecr\\Desktop\\Proyecto\\Laboratorio2_ESD\\Laboratorio_2_Estructura_De_Datos\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "C:\\Users\\david\\OneDrive - Ministerio de Educaci\u00F3n, Gobierno de El Salvador\\Desktop\\Laboratorio2_ESD\\Laboratorio_2_Estructura_De_Datos\\Program.cs",
+              "ToolTip": "C:\\Users\\thecr\\Desktop\\Proyecto\\Laboratorio2_ESD\\Laboratorio_2_Estructura_De_Datos\\Program.cs",
               "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAgwIMAAAA7AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-18T01:08:37.931Z",
               "EditorCaption": ""
-            }
-          ]
-        },
-        {
-          "DockedWidth": 204,
-          "SelectedChildIndex": -1,
-          "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
             }
           ]
         }

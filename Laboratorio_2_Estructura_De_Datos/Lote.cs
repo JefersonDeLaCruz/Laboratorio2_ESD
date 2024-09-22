@@ -33,16 +33,16 @@ namespace Laboratorio_2_Estructura_De_Datos
         public override string ToString()
         {
             
-            return $"Codigo: {this.Id}\t{this.fechaIngreso}\t {this.Cantidad}\t{this.Precio}\t{this.precioTotal}";
+            
+            return $"{this.Id, -5} {this.fechaIngreso, -15} {this.Cantidad, 10} {this.Precio.ToString("F2"), 15} {this.precioTotal.ToString("F2"), 10}";
         }
 
         public static void mostrarLotes()
         {
-            
+            Console.WriteLine($"{"ID",-5} {"FECHA INGRESO",-15} {"CANTIDAD",10} {"PRECIO UNIDAD",15} {"PRECIO LOTE",10}");
+            Console.WriteLine(new string('-', 50));
             foreach (var item in Producto.Lote)
             {
-
-                
                 Console.WriteLine(item);
                 
             }

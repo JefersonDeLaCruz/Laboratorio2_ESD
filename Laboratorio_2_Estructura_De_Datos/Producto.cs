@@ -86,7 +86,8 @@ namespace Laboratorio_2_Estructura_De_Datos
 
         public override string ToString()
         {
-            return $"Nombre: {this.Nombre}\tPrecio unitario: {this.Precio}";
+            
+            return $"{this.Nombre,-15} {this.Precio.ToString("F2"), 10}";
         }
     }
 }
