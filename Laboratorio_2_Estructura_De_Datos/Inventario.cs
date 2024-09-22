@@ -51,18 +51,12 @@ namespace Laboratorio_2_Estructura_De_Datos
                 }
                 z++;
             }
-            Console.WriteLine("CODIGOS E INDICES CORRESPONDIENTES AL PRODUCTO SELENCCIONADO");
-            Console.WriteLine(string.Join(", ", codigos));
-            Console.WriteLine(string.Join(", ", indicesProductosEnLote));
-            Console.ReadKey();
-            //ya se cuantos lotes hay de ese producto --> codigos.count
-            //necesito determinar cual de esos lotes es el mas antiguo
-            //el mas antigui es cuyo id == 1
             bool ventaRealizada = false;
             while (!ventaRealizada)
             {
 
                 int productosVendidos = 0;
+                int aux = cantidadSaliente;
                 for (int i = 0; i < indicesProductosEnLote.Count; i++)
                 {
 
@@ -73,28 +67,32 @@ namespace Laboratorio_2_Estructura_De_Datos
                     Queue<Producto> colaP = new Queue<Producto>(productos);
 
 
-                    while (colaP.Count > 0 && cantidadSaliente > 0)
+                    while (productosVendidos < cantidadSaliente && colaP.Count > 0)
                     {
                         var producto = colaP.Dequeue();
                         Console.WriteLine($"Vendiendo {productosVendidos+1}: {producto.Nombre}");
                         productosVendidos++;
-                        cantidadSaliente--;
-
+                        
                     }
-                    if (colaP.Count == 0 && cantidadSaliente > 0)
+                    if (colaP.Count <= 0 && productosVendidos < cantidadSaliente)
                     {
                         //si este se cumple es por que el lote quedo vacio pero aun falta vender mas producto
                         Producto.LotesIndivuduales[indicesProductosEnLote[i]].Clear();
-                        Producto.Lote[indicesProductosEnLote[i]].Cantidad -= productosVendidos;
-                        Inventario.inventario[idProducto].Cantidad -= productosVendidos;
+                        Producto.Lote[indicesProductosEnLote[i]].Cantidad = 0;
+                        Inventario.inventario[idProducto].Cantidad = Inventario.inventario[idProducto].Cantidad - productosVendidos;
                         Console.WriteLine($"Productos en el lote {Producto.Lote[indicesProductosEnLote[i]].Id} han sido vendidos");
-                        
+                        aux -= productosVendidos;
+                        Console.ReadKey();
                     }
-                    else if (colaP.Count > 0 &&  cantidadSaliente <= 0)
+                    else if (colaP.Count > 0 &&  productosVendidos >= cantidadSaliente)
                     {
-                        Producto.LotesIndivuduales[indicesProductosEnLote[i]].RemoveRange(0,cantidadSaliente);
-                        Producto.Lote[indicesProductosEnLote[i]].Cantidad -= productosVendidos;
-                        Inventario.inventario[idProducto].Cantidad -= productosVendidos;
+                        
+                        //este se cumple si el lote actual dio abasto la venta
+                        //cantidadSaliente -= productosVendidos;
+                        Producto.LotesIndivuduales[indicesProductosEnLote[i]].RemoveRange(0,aux);
+                        Producto.Lote[indicesProductosEnLote[i]].Cantidad = Producto.Lote[indicesProductosEnLote[i]].Cantidad - aux;
+                        Inventario.inventario[idProducto].Cantidad = Inventario.inventario[idProducto].Cantidad - aux;
+                        Console.ReadKey();
                     }
 
                     if (productosVendidos >= cantidadSaliente)
@@ -114,24 +112,8 @@ namespace Laboratorio_2_Estructura_De_Datos
             Console.WriteLine("Venta realizada con exito");
 
 
-            //List<Producto> productos = new List<Producto>();
-            //for (int i = 0; i < codigos.Count; i++)
-            //{
-            //    for (int j = 0; j < Producto.Lote.Count; j++)
-            //    {
-            //        if (Producto.Lote[j].Id == codigos[i])
-            //        {
-            //            productos.AddRange(Producto.LotesIndivuduales[j]);//fucionamos las listas
-            //            break;
-            //        }
-            //    }
-            //}
-
-            //Queue<Producto> productosCola = new Queue<Producto>(productos);
-            //Console.WriteLine("verificar si la lista fucionada si esta fucionando corrctamente");
-            //Console.WriteLine($"{productosCola.Count} + {productos.Count}");
+            
             Console.ReadKey();
-            //valido que el primer lote tenga suficientes unidades para dar basto a la venta
 
 
 

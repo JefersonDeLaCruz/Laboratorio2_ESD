@@ -190,6 +190,8 @@ namespace Laboratorio_2_Estructura_De_Datos
                 int id = -1;
                 Console.Clear();
                 //mostramos los lotes de dicho producto
+                Console.WriteLine($"{"ID",-5} {"FECHA INGRESO",-15} {"CANTIDAD",10} {"PRECIO UNIDAD",15} {"PRECIO LOTE",10}");
+                Console.WriteLine(new string('-', 50));
                 Lote.mostrarLotes(Producto.Lote, opcionId);
 
                 //pregunta si quiere ver los productos en un lote de los que se muestre
