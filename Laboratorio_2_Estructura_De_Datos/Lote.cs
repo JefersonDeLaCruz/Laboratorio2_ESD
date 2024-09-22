@@ -37,14 +37,15 @@ namespace Laboratorio_2_Estructura_De_Datos
             return $"{this.Id, -5} {this.fechaIngreso, -15} {this.Cantidad, 10} {this.Precio.ToString("F2"), 15} {this.precioTotal.ToString("F2"), 10}";
         }
 
-        public static void mostrarLotes()
+        //muestra todos los lotes independientemente a que producto pertenezca
+        public static void mostrarLotes(List<Lote> Lote)
         {
             Console.WriteLine($"{"ID",-5} {"FECHA INGRESO",-15} {"CANTIDAD",10} {"PRECIO UNIDAD",15} {"PRECIO LOTE",10}");
             Console.WriteLine(new string('-', 50));
-            foreach (var item in Producto.Lote)
+            foreach (var item in Lote)
             {
                 Console.WriteLine(item);
-                
+
             }
             Console.ReadKey();
             Console.ReadKey();

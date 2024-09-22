@@ -150,10 +150,13 @@ namespace Laboratorio_2_Estructura_De_Datos
                         Console.WriteLine("Para ver los lotes de un producto ingrese el ID correspondiente. De lo contrario ingrese -1");
                         int opcionId;
 
-                        while (!(int.TryParse(Console.ReadLine(), out opcionId) && (opcionId == -1 || (opcionId >= 1 && opcionId <= Producto.Lote.Count))))
+                        
+                        while (!(int.TryParse(Console.ReadLine(), out opcionId) && (opcionId == -1 || (opcionId >= 1 && opcionId <= Producto.LotesIndivuduales.Count))))
                         {
                             Console.WriteLine("El ID ingresado es invalido o no existe");
                         }
+                        List<Lote> lotes = new List<Lote>();
+                        lotes = Inventario.inventario[opcionId].Lote;
                         if (opcionId == -1)
                         {
                             break;
@@ -170,7 +173,6 @@ namespace Laboratorio_2_Estructura_De_Datos
                         break;
                     case 10:
                         //para testeo
-                        Lote.mostrarLotes();
                         Console.ReadKey();
                         Console.ReadKey();
                         break;
@@ -185,6 +187,8 @@ namespace Laboratorio_2_Estructura_De_Datos
 
         static void mostrarDetalles(int opcionId)
         {
+            List<Lote> lotes = new List<Lote>();
+            lotes = Inventario.inventario[opcionId].Lote;
             while (true)
             {
                 int id = -1;
@@ -192,7 +196,7 @@ namespace Laboratorio_2_Estructura_De_Datos
                 //mostramos los lotes de dicho producto
                 Console.WriteLine($"{"ID",-5} {"FECHA INGRESO",-15} {"CANTIDAD",10} {"PRECIO UNIDAD",15} {"PRECIO LOTE",10}");
                 Console.WriteLine(new string('-', 50));
-                Lote.mostrarLotes(Producto.Lote, opcionId);
+                Lote.mostrarLotes(lotes, opcionId);
 
                 //pregunta si quiere ver los productos en un lote de los que se muestre
                 string codigoIngresado;
@@ -208,7 +212,7 @@ namespace Laboratorio_2_Estructura_De_Datos
                 }
                 else
                 {
-                    foreach (var item in Producto.Lote)
+                    foreach (var item in lotes)
                     {
                         if (item.Id == codigoIngresado)
                         {
@@ -226,7 +230,7 @@ namespace Laboratorio_2_Estructura_De_Datos
                         Console.ReadKey();
 
                     }
-                    Inventario.verProductosIndivuduales(Producto.Lote, codigoIngresado, id);
+                    Inventario.verProductosIndivuduales(lotes, codigoIngresado, id);
 
                 }
             }

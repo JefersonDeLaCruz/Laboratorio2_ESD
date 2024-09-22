@@ -22,7 +22,7 @@ namespace Laboratorio_2_Estructura_De_Datos
         public int Cantidad { get; set; }
         
         //Todo producto que entra se tratara como un lote y se almacenara aqui
-        public static List<Lote> Lote { get; set; } = new List<Lote>();
+        public List<Lote> Lote { get; set; } = new List<Lote>();
         
 
         //OJO AAQUI
@@ -42,7 +42,7 @@ namespace Laboratorio_2_Estructura_De_Datos
 
             this.Precio = precio;
 
-            Lote.Add(lote);
+            this.Lote.Add(lote);
             
 
             //Actualizar cantidad disponible de producto 
@@ -77,7 +77,7 @@ namespace Laboratorio_2_Estructura_De_Datos
             //this.Precio = precio;
             this.Precio = costoPromedio;
 
-            Lote.Add(lote);
+            this.Lote.Add(lote);
 
             //Actualizar cantidad disponible de producto 
             //sumamos la cantidad en cada lote

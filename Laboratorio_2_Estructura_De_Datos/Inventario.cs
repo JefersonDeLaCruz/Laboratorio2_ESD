@@ -36,9 +36,12 @@ namespace Laboratorio_2_Estructura_De_Datos
                 Console.WriteLine("Entrada no valida");
             }
 
+
             List<int> indicesProductosEnLote = new List<int>();
             int z = 0;
-            foreach (var item in Producto.Lote)
+            List<Lote> lotes = new List<Lote>();
+            lotes = inventario[idProducto].Lote;
+            foreach (var item in lotes)
             {
                 string codigo = item.Id;
                 int indiceGuionbajo = codigo.LastIndexOf('_');
@@ -78,9 +81,9 @@ namespace Laboratorio_2_Estructura_De_Datos
                     {
                         //si este se cumple es por que el lote quedo vacio pero aun falta vender mas producto
                         Producto.LotesIndivuduales[indicesProductosEnLote[i]].Clear();
-                        Producto.Lote[indicesProductosEnLote[i]].Cantidad = 0;
+                        lotes[indicesProductosEnLote[i]].Cantidad = 0;
                         Inventario.inventario[idProducto].Cantidad = Inventario.inventario[idProducto].Cantidad - productosVendidos;
-                        Console.WriteLine($"Productos en el lote {Producto.Lote[indicesProductosEnLote[i]].Id} han sido vendidos");
+                        Console.WriteLine($"Productos en el lote {lotes[indicesProductosEnLote[i]].Id} han sido vendidos");
                         aux -= productosVendidos;
                         Console.ReadKey();
                     }
@@ -90,7 +93,7 @@ namespace Laboratorio_2_Estructura_De_Datos
                         //este se cumple si el lote actual dio abasto la venta
                         //cantidadSaliente -= productosVendidos;
                         Producto.LotesIndivuduales[indicesProductosEnLote[i]].RemoveRange(0,aux);
-                        Producto.Lote[indicesProductosEnLote[i]].Cantidad = Producto.Lote[indicesProductosEnLote[i]].Cantidad - aux;
+                        lotes[indicesProductosEnLote[i]].Cantidad = lotes[indicesProductosEnLote[i]].Cantidad - aux;
                         Inventario.inventario[idProducto].Cantidad = Inventario.inventario[idProducto].Cantidad - aux;
                         Console.ReadKey();
                     }
@@ -171,7 +174,7 @@ namespace Laboratorio_2_Estructura_De_Datos
                     //n es el id del producto dentro del lote y c sera el Lote.count + 1
                     //abn servira para identificar de que producto esta compuesto el lote
                     //c sera el id del lote como tal
-                    string idLote = $"{item.Value.Nombre.Substring(0, 2)}{item.Value.Id}_{Producto.Lote.Count + 1}";
+                    string idLote = $"{item.Value.Nombre.Substring(0, 2)}{item.Value.Id}_{item.Value.Lote.Count + 1}";
                     Lote loteNuevo = new Lote(DateTime.Now, cantidad, precio, idLote);
                     item.Value.agregarLote(precio, loteNuevo);
                     //
@@ -188,7 +191,7 @@ namespace Laboratorio_2_Estructura_De_Datos
             //El producto no existe
             if (!existe)
             {
-                string idLote = $"{nombreProducto.Substring(0, 2)}{numAlmacenados}_{Producto.Lote.Count + 1}";
+                string idLote = $"{nombreProducto.Substring(0, 2)}{numAlmacenados}_{1}";
                 Lote loteNuevo = new Lote(DateTime.Now, cantidad, precio, idLote);
                 //Agregar el producto
                 inventario.Add(numAlmacenados, new Producto(nombreProducto, precio, numAlmacenados, loteNuevo));
